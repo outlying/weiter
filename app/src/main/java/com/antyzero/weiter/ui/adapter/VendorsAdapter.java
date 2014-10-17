@@ -1,6 +1,7 @@
 package com.antyzero.weiter.ui.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * Created by tornax on 18.10.14.
+ * Display vendors list
  */
 public class VendorsAdapter extends BaseAdapter {
+
+    private final Resources resources;
 
     @Inject
     Picasso picasso;
@@ -38,6 +41,7 @@ public class VendorsAdapter extends BaseAdapter {
 
         this.vendorList = vendorList;
         this.layoutInflater = LayoutInflater.from( context );
+        this.resources = context.getResources();
     }
 
     @Override
@@ -72,7 +76,7 @@ public class VendorsAdapter extends BaseAdapter {
 
         Vendor vendor = getItem( position );
 
-        viewHolder.textViewProducts.setText( "ASD" ); // TODO
+        viewHolder.textViewProducts.setText( resources.getString( R.string.products, vendor.getProductCount() ) );
         viewHolder.textViewTitle.setText( vendor.getName() );
 
         picasso.load( vendor.getImageUrl() ).into( viewHolder.imageView );
