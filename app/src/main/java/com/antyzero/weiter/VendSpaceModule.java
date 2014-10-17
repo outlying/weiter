@@ -1,5 +1,7 @@
 package com.antyzero.weiter;
 
+import com.antyzero.weiter.config.Config;
+import com.antyzero.weiter.config.ConfigImpl;
 import com.antyzero.weiter.network.VendorSpaceService;
 import com.kontakt.sdk.android.manager.BeaconManager;
 
@@ -25,11 +27,18 @@ public class VendSpaceModule {
     @Provides
     public VendorSpaceService providesVendorSpaceService(){
 
+        Config config = providesConfig();
+
         RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("https://api.github.com")
+                .setEndpoint( config.getWebserviceUrl() )
                 .build();
 
         return restAdapter.create(VendorSpaceService.class);
+    }
+
+    @Provides
+    public Config providesConfig(){
+        return new ConfigImpl();
     }
 
     @Provides
