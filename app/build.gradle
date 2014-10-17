@@ -84,6 +84,7 @@ dependencies {
 
     // Internal
 
+    compile 'com.squareup.picasso:picasso:2.3.4'
     compile 'com.kontakt.sdk.android:library:1.0.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
     compile 'com.squareup.dagger:dagger:1.2.2'

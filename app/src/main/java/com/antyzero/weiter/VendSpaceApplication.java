@@ -34,6 +34,15 @@ public class VendSpaceApplication extends Application {
     }
 
     /**
+     * ...
+     *
+     * @return
+     */
+    public ObjectGraph objectGraph(){
+        return objectGraph;
+    }
+
+    /**
      * Access VendSpaceApplication instance
      *
      * @param context for accessing

@@ -4,6 +4,7 @@ import com.antyzero.weiter.config.Config;
 import com.antyzero.weiter.config.ConfigImpl;
 import com.antyzero.weiter.network.VendorSpaceService;
 import com.kontakt.sdk.android.manager.BeaconManager;
+import com.squareup.picasso.Picasso;
 
 import dagger.Module;
 import dagger.Provides;
@@ -34,6 +35,11 @@ public class VendSpaceModule {
                 .build();
 
         return restAdapter.create(VendorSpaceService.class);
+    }
+
+    @Provides
+    public Picasso providesPicasso(){
+        return Picasso.with( vendSpaceApplication );
     }
 
     @Provides

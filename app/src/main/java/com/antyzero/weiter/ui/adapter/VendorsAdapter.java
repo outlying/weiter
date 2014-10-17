@@ -9,14 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.antyzero.weiter.R;
+import com.antyzero.weiter.VendSpaceApplication;
 import com.antyzero.weiter.network.model.Vendor;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * Created by tornax on 18.10.14.
  */
 public class VendorsAdapter extends BaseAdapter {
+
+    @Inject
+    Picasso picasso;
 
     private final List<Vendor> vendorList;
     private final LayoutInflater layoutInflater;
@@ -26,6 +33,8 @@ public class VendorsAdapter extends BaseAdapter {
         if( vendorList == null ) {
             throw new IllegalArgumentException( "List cannot be null" );
         }
+
+        VendSpaceApplication.get( context ).objectGraph().inject( this );
 
         this.vendorList = vendorList;
         this.layoutInflater = LayoutInflater.from( context );
@@ -66,7 +75,7 @@ public class VendorsAdapter extends BaseAdapter {
         viewHolder.textViewProducts.setText( "ASD" ); // TODO
         viewHolder.textViewTitle.setText( vendor.getName() );
 
-        // TODO image loading
+        picasso.load( vendor.getImageUrl() ).into( viewHolder.imageView );
 
         return convertView;
     }
