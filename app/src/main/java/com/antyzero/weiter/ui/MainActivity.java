@@ -61,7 +61,6 @@ public class MainActivity extends BaseActivity implements Callback<List<Vendor>>
     @Override
     protected void onStart() {
         super.onStart();
-
         vendorSpaceService.listVendors( 0f, 0f, this );
     }
 
