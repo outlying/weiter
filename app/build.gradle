@@ -1,4 +1,17 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.0'
+        classpath 'com.droidtitan:lint-cleaner-plugin:0.3.0'
+    }
+}
+
+apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
+apply plugin: 'com.droidtitan.lintcleaner'
 
 android {
     compileSdkVersion 20
@@ -9,7 +22,7 @@ android {
         minSdkVersion 18
         targetSdkVersion 20
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
     }
     buildTypes {
         release {
@@ -21,6 +34,8 @@ android {
 
 dependencies {
 
+    provided 'com.squareup.dagger:dagger-compiler:1.2.2'
+
     // Internal dependencies
 
     def domainLayer = project(':domain')
@@ -28,6 +43,9 @@ dependencies {
     compile domainLayer
 
     // Internal
+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+    compile 'com.squareup.dagger:dagger:1.2.2'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
