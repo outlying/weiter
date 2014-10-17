@@ -13,5 +13,5 @@ import retrofit.http.Query;
 public interface VendorSpaceService {
 
     @GET( "/vendors" )
-    List<Vendor> listVendors( @Query("lng") int lng, @Query( "lat" ) int lat );
+    List<Vendor> listVendors( @Query("lng") float lng, @Query( "lat" ) float lat );
 }
