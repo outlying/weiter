@@ -30,14 +30,6 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name="com.kontakt.sdk.android.manager.BeaconService"
-            android:exported="false"/>
-
-        <service
-            android:name="com.kontakt.sdk.android.manager.ActionService"
-            android:exported="false"/>
-
         <meta-data
             android:name="kontakt.io.API_KEY"
             android:value="pMZysCZtrIpfkwSJGUIRTUcVgxcPjVhN"/>
