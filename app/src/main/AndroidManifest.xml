@@ -32,7 +32,7 @@
             android:name="com.kontakt.sdk.android.manager.ActionService"
             android:exported="false"/>
 
-        <meta-data android:name="kontakt.io.API_KEY" android:value="TODO_DOO_BI_DOO"/>
+        <meta-data android:name="kontakt.io.API_KEY" android:value="pMZysCZtrIpfkwSJGUIRTUcVgxcPjVhN"/>
 
     </application>
 
