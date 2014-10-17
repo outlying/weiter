@@ -1,5 +1,7 @@
 package com.antyzero.weiter.network.model;
 
+import java.util.List;
+
 /**
  * Represents single vendor
  */
@@ -13,6 +15,8 @@ public class Vendor {
 
     private float latitude;
     private float longitude;
+
+    private List<Product> products;
 
     public long getId() {
         return id;
