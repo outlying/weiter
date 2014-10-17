@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.antyzero.weiter.R;
+import com.antyzero.weiter.VendSpaceApplication;
 import com.kontakt.sdk.android.configuration.ForceScanConfiguration;
 import com.kontakt.sdk.android.configuration.MonitorPeriod;
 import com.kontakt.sdk.android.connection.OnServiceBoundListener;
@@ -19,6 +20,10 @@ import com.kontakt.sdk.android.manager.BeaconManager;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.ObjectGraph;
+
 /**
  * This is activity user will see most of the time
  */
@@ -26,7 +31,10 @@ public class MainActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
 
-    private BeaconManager beaconManager;
+    @Inject
+    BeaconManager beaconManager;
+
+    private ObjectGraph activityGraph;
 
     /**
      * {@inheritDoc}
@@ -35,6 +43,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
+
+        activityGraph = VendSpaceApplication.get( this ).createScopedGraph( new UiModule( this ) );
+        activityGraph.inject( this );
 
         beaconManager = BeaconManager.newInstance(this);
         beaconManager.setMonitorPeriod( MonitorPeriod.MINIMAL);

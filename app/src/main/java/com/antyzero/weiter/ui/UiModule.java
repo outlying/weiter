@@ -10,7 +10,8 @@ import dagger.Module;
         addsTo = VendSpaceModule.class,
         injects = {
                 MainActivity.class,
-        }
+        },
+        library = true
 )
 public class UiModule {
 

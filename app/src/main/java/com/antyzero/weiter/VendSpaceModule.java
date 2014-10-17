@@ -9,7 +9,8 @@ import dagger.Provides;
  * ...
  */
 @Module(
-        injects = VendSpaceApplication.class
+        injects = VendSpaceApplication.class,
+        library = true
 )
 public class VendSpaceModule {
 
