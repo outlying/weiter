@@ -1,6 +1,8 @@
 package com.antyzero.weiter.ui;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,7 +25,7 @@ import retrofit.client.Response;
 /**
  * This is activity user will see most of the time
  */
-public class MainActivity extends BaseActivity implements Callback<List<Vendor>> {
+public class MainActivity extends BaseActivity implements Callback<List<Vendor>>, AdapterView.OnItemClickListener {
 
     @Inject
     VendorSpaceService vendorSpaceService;
@@ -51,15 +53,22 @@ public class MainActivity extends BaseActivity implements Callback<List<Vendor>>
 
         listView = (ListView) findViewById( R.id.listView );
         listView.setAdapter( vendorsAdapter );
+        listView.setOnItemClickListener( this );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onStart() {
         super.onStart();
 
-        vendorSpaceService.listVendors( 0f,0f, this );
+        vendorSpaceService.listVendors( 0f, 0f, this );
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void success( List<Vendor> vendors, Response response ) {
         vendorList.clear();
@@ -67,8 +76,19 @@ public class MainActivity extends BaseActivity implements Callback<List<Vendor>>
         vendorsAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void failure( RetrofitError error ) {
         Toast.makeText( this, "Brak sprzedawców w okolicy", Toast.LENGTH_SHORT ).show();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
+        VendorActivity.start( this, id );
     }
 }
