@@ -13,4 +13,28 @@ public class Vendor {
 
     private float latitude;
     private float longitude;
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getProductCount() {
+        return productCount;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
 }
