@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * This is activity user will see most of the time
  */
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
 
@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
         beaconManager.setMonitorPeriod( MonitorPeriod.MINIMAL);
         beaconManager.setForceScanConfiguration( ForceScanConfiguration.DEFAULT);
         beaconManager.registerMonitoringListener(new BeaconManager.MonitoringListener() {
+
             @Override
             public void onMonitorStart() {}
 
