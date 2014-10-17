@@ -46,8 +46,7 @@ public class MainActivity extends BaseActivity implements Callback<List<Vendor>>
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main );
 
-        activityGraph = VendSpaceApplication.get( this ).createScopedGraph( new UiModule( this ) );
-        activityGraph.inject( this );
+        VendSpaceApplication.get( this ).objectGraph().inject( this );
 
         vendorsAdapter = new VendorsAdapter( this, vendorList );
 
