@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,8 @@ public class VendorActivity extends BaseActivity implements Callback<Vendor> {
     private TextView textViewTitle;
     private TextView textViewProducts;
 
+    private ListView listView;
+
     @Inject
     Picasso picasso;
 
@@ -59,11 +62,13 @@ public class VendorActivity extends BaseActivity implements Callback<Vendor> {
 
         setContentView( R.layout.activity_vendor );
 
-        imageView = ( ImageView) findViewById( R.id.imageView );
+        imageView = (ImageView) findViewById( R.id.imageView );
 
         textViewTitle = (TextView) findViewById( R.id.textViewTitle );
         textViewProducts = (TextView) findViewById( R.id.textViewProducts );
         textViewProducts.setVisibility( GONE );
+
+        listView = (ListView) findViewById( R.id.listView );
     }
 
     @Override

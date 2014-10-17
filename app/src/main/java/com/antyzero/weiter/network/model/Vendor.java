@@ -2,6 +2,8 @@ package com.antyzero.weiter.network.model;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Represents single vendor
  */
@@ -10,11 +12,12 @@ public class Vendor {
     private long id;
 
     private String name;
-    private String productCount;
     private String imageUrl;
 
     private float latitude;
     private float longitude;
+
+    private Integer productCount;
 
     private List<Product> products;
 
@@ -26,7 +29,7 @@ public class Vendor {
         return name;
     }
 
-    public String getProductCount() {
+    public Integer getProductCount() {
         return productCount;
     }
 
