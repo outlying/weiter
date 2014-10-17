@@ -48,9 +48,9 @@ public class MainActivity extends BaseActivity {
         activityGraph.inject( this );
 
         beaconManager = BeaconManager.newInstance(this);
-        beaconManager.setMonitorPeriod( MonitorPeriod.MINIMAL);
-        beaconManager.setForceScanConfiguration( ForceScanConfiguration.DEFAULT);
-        beaconManager.registerMonitoringListener(new BeaconManager.MonitoringListener() {
+        beaconManager.setMonitorPeriod( MonitorPeriod.MINIMAL );
+        beaconManager.setForceScanConfiguration( ForceScanConfiguration.DEFAULT );
+        beaconManager.registerMonitoringListener( new BeaconManager.MonitoringListener() {
 
             @Override
             public void onMonitorStart() {}
