@@ -3,7 +3,6 @@ package com.antyzero.weiter;
 import com.antyzero.weiter.config.Config;
 import com.antyzero.weiter.config.ConfigImpl;
 import com.antyzero.weiter.network.VendorSpaceService;
-import com.kontakt.sdk.android.manager.BeaconManager;
 import com.squareup.picasso.Picasso;
 
 import dagger.Module;
@@ -34,7 +33,7 @@ public class VendSpaceModule {
                 .setEndpoint( config.getWebserviceUrl() )
                 .build();
 
-        return restAdapter.create(VendorSpaceService.class);
+        return restAdapter.create( VendorSpaceService.class );
     }
 
     @Provides

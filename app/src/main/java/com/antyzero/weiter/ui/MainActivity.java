@@ -9,7 +9,6 @@ import com.antyzero.weiter.VendSpaceApplication;
 import com.antyzero.weiter.network.VendorSpaceService;
 import com.antyzero.weiter.network.model.Vendor;
 import com.antyzero.weiter.ui.adapter.VendorsAdapter;
-import com.kontakt.sdk.android.manager.BeaconManager;
 
 import java.util.ArrayList;
 import java.util.List;
