@@ -20,5 +20,14 @@ android {
 }
 
 dependencies {
+
+    // Internal dependencies
+
+    def domainLayer = project(':domain')
+
+    compile domainLayer
+
+    // Internal
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
