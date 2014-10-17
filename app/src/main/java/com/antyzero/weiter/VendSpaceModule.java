@@ -3,6 +3,7 @@ package com.antyzero.weiter;
 import com.antyzero.weiter.config.Config;
 import com.antyzero.weiter.config.ConfigImpl;
 import com.antyzero.weiter.network.VendorSpaceService;
+import com.antyzero.weiter.ui.VendorActivity;
 import com.antyzero.weiter.ui.adapter.VendorsAdapter;
 import com.squareup.picasso.Picasso;
 
@@ -16,7 +17,8 @@ import retrofit.RestAdapter;
 @Module(
         injects = {
                 VendSpaceApplication.class,
-                VendorsAdapter.class
+                VendorsAdapter.class,
+                VendorActivity.class
         },
         library = true
 )

@@ -41,8 +41,7 @@ public class VendorActivity extends BaseActivity implements Callback<Vendor> {
 
         vendorId = getIntent().getLongExtra( EXTRA_VENDOR_ID, -1l );
 
-        activityGraph = VendSpaceApplication.get( this ).createScopedGraph( new UiModule( this ) );
-        activityGraph.inject( this );
+        VendSpaceApplication.get( this ).objectGraph().inject( this );
 
         setContentView( R.layout.activity_vendor );
     }
