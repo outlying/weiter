@@ -46,9 +46,4 @@ public class VendSpaceModule {
     public Config providesConfig(){
         return new ConfigImpl();
     }
-
-    @Provides
-    public BeaconManager providesBeaconManager(){
-        return BeaconManager.newInstance( vendSpaceApplication );
-    }
 }
