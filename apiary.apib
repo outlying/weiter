@@ -29,22 +29,24 @@ Notes related resources of the **Notes API**
           "longitude": 19.957646
         }]
 
-## Note [/notes/{id}]
-A single Note object with all its details
+## Note [/vendor/{id}]
+Get detailed information about vendor, include products
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number, `1`) ... vendor ID
 
 ### Retrieve a Note [GET]
 + Response 200 (application/json)
 
-    + Header
-
-            X-My-Header: The Value
-
-    + Body
-
-            { "id": 2, "title": "Pick-up posters from post-office" }
-
-### Remove a Note [DELETE]
-+ Response 204
+         {
+           "id": 2, 
+           "name": "FoodTruck",
+           "productCount": 4,
+           "imageUrl": "http://www.findlafoodtrucks.com/blog/wp-content/uploads/2010/09/kabobmenu.jpg",
+           "latitude": 50.058289,
+           "longitude": 19.957646,
+           "products": [
+              {},
+              {}
+            ]
+         }
