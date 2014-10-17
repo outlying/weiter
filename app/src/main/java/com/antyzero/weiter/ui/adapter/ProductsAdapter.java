@@ -11,47 +11,49 @@ import android.widget.TextView;
 
 import com.antyzero.weiter.R;
 import com.antyzero.weiter.VendSpaceApplication;
-import com.antyzero.weiter.network.model.Vendor;
+import com.antyzero.weiter.network.model.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import static android.view.View.GONE;
+
 /**
- * Display vendors list
+ * Created by tornax on 18.10.14.
  */
-public class VendorsAdapter extends BaseAdapter {
+public class ProductsAdapter extends BaseAdapter {
 
     private final Resources resources;
 
     @Inject
     Picasso picasso;
 
-    private final List<Vendor> vendorList;
+    private final List<Product> productList;
     private final LayoutInflater layoutInflater;
 
-    public VendorsAdapter( Context context, List<Vendor> vendorList ) {
+    public ProductsAdapter( Context context, List<Product> productList ) {
 
-        if( vendorList == null ) {
+        if( productList == null ) {
             throw new IllegalArgumentException( "List cannot be null" );
         }
 
         VendSpaceApplication.get( context ).objectGraph().inject( this );
 
-        this.vendorList = vendorList;
+        this.productList = productList;
         this.layoutInflater = LayoutInflater.from( context );
         this.resources = context.getResources();
     }
 
     @Override
     public int getCount() {
-        return vendorList.size();
+        return productList.size();
     }
 
     @Override
-    public Vendor getItem( int position ) {
-        return vendorList.get( position );
+    public Product getItem( int position ) {
+        return productList.get( position );
     }
 
     @Override
@@ -74,12 +76,12 @@ public class VendorsAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Vendor vendor = getItem( position );
+        Product product = getItem( position );
 
-        viewHolder.textViewProducts.setText( resources.getString( R.string.products, vendor.getProductCount() ) );
-        viewHolder.textViewTitle.setText( vendor.getName() );
+        /*viewHolder.textViewProducts.setText( resources.getString( R.string.products, product.getProductCount() ) );
+        viewHolder.textViewTitle.setText( product.getName() );
 
-        picasso.load( vendor.getImageUrl() ).into( viewHolder.imageView );
+        picasso.load( product.getImageUrl() ).into( viewHolder.imageView );*/
 
         return convertView;
     }
@@ -97,6 +99,8 @@ public class VendorsAdapter extends BaseAdapter {
             textViewTitle = (TextView) view.findViewById( R.id.textViewTitle );
             textViewProducts = (TextView) view.findViewById( R.id.textViewProducts );
             imageView = (ImageView) view.findViewById( R.id.imageView );
+
+            textViewProducts.setVisibility( GONE );
         }
     }
 }

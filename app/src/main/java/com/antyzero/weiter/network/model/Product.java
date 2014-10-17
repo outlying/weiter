@@ -5,5 +5,8 @@ package com.antyzero.weiter.network.model;
  */
 public class Product {
 
-    // TODO
+    public long getId() {
+        // Mock
+        return -1;
+    }
 }
