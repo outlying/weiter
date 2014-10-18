@@ -19,8 +19,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static android.view.View.GONE;
-
 /**
  * Created by tornax on 18.10.14.
  */
@@ -37,8 +35,6 @@ public class ProductsAdapter extends BaseAdapter {
     private final LongSparseArray<Integer> orderCount = new LongSparseArray<>();
 
     /**
-     *
-     *
      * @param context
      * @param productList
      */
@@ -75,7 +71,7 @@ public class ProductsAdapter extends BaseAdapter {
 
         ViewHolder viewHolder;
 
-        if(convertView == null){
+        if( convertView == null ) {
             convertView = layoutInflater.inflate( R.layout.adapter_item_product_order, parent, false );
 
             viewHolder = new ViewHolder( convertView );
@@ -91,6 +87,47 @@ public class ProductsAdapter extends BaseAdapter {
 
         viewHolder.textViewTitle.setText( product.getName() );
 
+        final long productId = product.getId();
+
+        if( orderCount.indexOfKey( productId ) < 0 ) {
+            viewHolder.textViewCounter.setText( "0" );
+        } else {
+            viewHolder.textViewCounter.setText( String.valueOf( orderCount.get( productId ) ) );
+        }
+
+        viewHolder.buttonDown.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                Integer oldValue = orderCount.get( productId );
+
+                if( oldValue == null ){
+                    oldValue = 0;
+                }
+
+                if( oldValue > 0 ) {
+                    orderCount.put( productId, oldValue - 1 );
+                }
+
+                notifyDataSetChanged();
+            }
+        } );
+
+        viewHolder.buttonUp.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+
+                Integer oldValue = orderCount.get( productId );
+
+                if(oldValue == null){
+                    oldValue = 0;
+                }
+
+                orderCount.put( productId, oldValue + 1 );
+
+                notifyDataSetChanged();
+            }
+        } );
+
         return convertView;
     }
 
@@ -100,11 +137,22 @@ public class ProductsAdapter extends BaseAdapter {
     private static class ViewHolder {
 
         private final TextView textViewTitle;
+        private final TextView textViewCounter;
+
         private final ImageView imageView;
 
+        private final View buttonDown;
+        private final View buttonUp;
+
         private ViewHolder( View view ) {
+
             textViewTitle = (TextView) view.findViewById( R.id.textViewTitle );
+            textViewCounter = (TextView) view.findViewById( R.id.textViewCounter );
+
             imageView = (ImageView) view.findViewById( R.id.imageView );
+
+            buttonDown = view.findViewById( R.id.buttonDown );
+            buttonUp = view.findViewById( R.id.buttonUp );
         }
     }
 }
