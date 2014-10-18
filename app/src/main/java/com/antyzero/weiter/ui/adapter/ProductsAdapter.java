@@ -78,7 +78,9 @@ public class ProductsAdapter extends BaseAdapter {
 
         Product product = getItem( position );
 
-        // TODO assign values
+        picasso.load( product.getImageUrl() ).into( viewHolder.imageView );
+
+        viewHolder.textViewTitle.setText( product.getName() );
 
         return convertView;
     }
