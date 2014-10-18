@@ -72,13 +72,10 @@ Get list of products for given vendor
           }
         ]
 
-## Orders [/order]
+## Create order [/order]
 
 ### Create new order [POST]
 + Request
-   + Headers 
-  
-            Authorization: KEY your_api_key
    + Body
 
             {
@@ -103,10 +100,10 @@ Get list of products for given vendor
             "orderId": 123
         }
         
-        
-## Orders [/order/{id}]
 
-### Get order status [GET]
+## Order status [/order/{id}]
+
+### Get order status for customer [GET]
 
 + Response 200 (application/json)
 
@@ -114,3 +111,32 @@ Get list of products for given vendor
             "status": "deliverying",
             "wait": 120
         }
+
+
+## Orders [/orders]
+
+### Get order list for vendor [GET]
+
++ Request
+   + Headers 
+  
+            Authorization: KEY your_api_key
+
++ Response 200 (application/json)
+
+        [
+        {
+            "orderId": 123,
+            "products": [
+                    {
+                        "productId": 1,
+                        "amount": 1
+                    },
+                    {
+                        "productId": 2,
+                        "amount": 1
+                    }
+            ]
+        }
+        ]
+        
