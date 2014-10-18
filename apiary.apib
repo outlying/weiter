@@ -29,8 +29,8 @@ Notes related resources of the **Notes API**
           "longitude": 19.957646
         }]
 
-## Vendor details [/vendor/{id}]
-Get detailed information about vendor, include products
+## Vendor information [/vendor/{id}]
+Get detailed information about vendor
 
 + Parameters
     + id (required, number, `1`) ... vendor ID
@@ -44,13 +44,22 @@ Get detailed information about vendor, include products
            "productCount": 4,
            "imageUrl": "http://www.findlafoodtrucks.com/blog/wp-content/uploads/2010/09/kabobmenu.jpg",
            "latitude": 50.058289,
-           "longitude": 19.957646,
-           "products": [
-              {
-                "id": 1,
-                "name": "gulasz ze słonia",
-                "price": 2.23,
-                "currency": "PLN"
-              }
-            ]
+           "longitude": 19.957646
          }
+
+
+
+## Vendor Product list [/vendor/{id}/product]
+Get list of products for given vendor
+
+### Retrive products list [GET]
++ Response 200 (application/json)
+
+        [
+          {
+            "id": 1,
+            "name": "gulasz ze słonia",
+            "price": 2.23,
+            "currency": "PLN"
+          }
+        ]
