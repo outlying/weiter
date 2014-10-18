@@ -33,6 +33,9 @@
         <activity
             android:name=".ui.VendorActivity" />
 
+        <activity
+            android:name=".ui.OrderActivity" />
+
         <meta-data
             android:name="kontakt.io.API_KEY"
             android:value="pMZysCZtrIpfkwSJGUIRTUcVgxcPjVhN"/>

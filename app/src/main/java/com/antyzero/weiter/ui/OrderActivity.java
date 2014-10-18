@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import com.antyzero.weiter.VendSpaceApplication;
 import com.antyzero.weiter.model.Order;
@@ -34,6 +35,11 @@ public class OrderActivity extends BaseActivity {
         }
 
         orders = getIntent().getParcelableArrayListExtra( EXTRA_ORDERS );
+
+        if(orders.isEmpty()){
+            Toast.makeText( this, "Lista zamówień nie może być pusta", Toast.LENGTH_SHORT ).show();
+            finish();
+        }
 
         VendSpaceApplication.get( this ).objectGraph().inject( this );
     }
