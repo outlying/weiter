@@ -4,6 +4,7 @@ import com.antyzero.weiter.config.Config;
 import com.antyzero.weiter.config.ConfigImpl;
 import com.antyzero.weiter.network.VendorSpaceService;
 import com.antyzero.weiter.ui.MainActivity;
+import com.antyzero.weiter.ui.OrderActivity;
 import com.antyzero.weiter.ui.VendorActivity;
 import com.antyzero.weiter.ui.adapter.ProductsAdapter;
 import com.antyzero.weiter.ui.adapter.VendorsAdapter;
@@ -24,7 +25,8 @@ import retrofit.RestAdapter;
                 ProductsAdapter.class,
 
                 MainActivity.class,
-                VendorActivity.class
+                VendorActivity.class,
+                OrderActivity.class
         },
         library = true
 )
