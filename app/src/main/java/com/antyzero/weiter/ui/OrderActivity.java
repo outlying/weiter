@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.Toast;
 
+import com.antyzero.weiter.R;
 import com.antyzero.weiter.VendSpaceApplication;
 import com.antyzero.weiter.model.Order;
 import com.antyzero.weiter.network.VendorSpaceService;
@@ -42,6 +43,8 @@ public class OrderActivity extends BaseActivity {
         }
 
         VendSpaceApplication.get( this ).objectGraph().inject( this );
+
+        setContentView( R.layout.activity_order );
     }
 
     /**

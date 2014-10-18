@@ -83,6 +83,7 @@ public class VendorActivity extends BaseActivity implements View.OnClickListener
         listView = (ListView) findViewById( R.id.listView );
         listView.setAdapter( productsAdapter );
 
+        button = (Button) findViewById( R.id.button );
         button.setOnClickListener( this );
     }
 
