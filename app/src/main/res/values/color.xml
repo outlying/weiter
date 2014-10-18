@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="cararra">#efefeb</color>
+    <color name="white">#fff</color>
+
+
+    <color name="item_background">@color/white</color>
+
+    <color name="window_background">@color/cararra</color>
+
+</resources>
