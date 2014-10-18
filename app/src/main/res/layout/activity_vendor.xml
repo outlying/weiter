@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/adapter_item_image"/>
+        layout="@layout/adapter_item_vendor"/>
 
     <!-- Products -->
 

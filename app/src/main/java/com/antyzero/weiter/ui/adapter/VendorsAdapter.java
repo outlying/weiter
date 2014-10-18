@@ -65,7 +65,7 @@ public class VendorsAdapter extends BaseAdapter {
         ViewHolder viewHolder;
 
         if(convertView == null){
-            convertView = layoutInflater.inflate( R.layout.adapter_item_image, parent, false );
+            convertView = layoutInflater.inflate( R.layout.adapter_item_vendor, parent, false );
 
             viewHolder = new ViewHolder( convertView );
 
