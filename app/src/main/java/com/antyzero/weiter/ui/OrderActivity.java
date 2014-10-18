@@ -1,11 +1,16 @@
 package com.antyzero.weiter.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import com.antyzero.weiter.VendSpaceApplication;
 import com.antyzero.weiter.model.Order;
 import com.antyzero.weiter.network.VendorSpaceService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -14,17 +19,37 @@ import javax.inject.Inject;
  */
 public class OrderActivity extends BaseActivity {
 
+    public static final String EXTRA_ORDERS = "EXTRA_ORDERS";
     @Inject
     VendorSpaceService vendorSpaceService;
+
+    private ArrayList<Order> orders;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
 
+        if(!getIntent().hasExtra( EXTRA_ORDERS )){
+            throw new IllegalArgumentException( "Missing orders extra" );
+        }
+
+        orders = getIntent().getParcelableArrayListExtra( EXTRA_ORDERS );
+
         VendSpaceApplication.get( this ).objectGraph().inject( this );
     }
 
-    public static void start( Context context, Order[] orders ){
+    /**
+     * Valid start
+     *
+     * @param context
+     * @param orders
+     */
+    public static void start( Context context, ArrayList<Order> orders ){
 
+        Intent intent = new Intent( context, OrderActivity.class );
+
+        intent.putParcelableArrayListExtra( EXTRA_ORDERS, orders );
+
+        context.startActivity( intent );
     }
 }
