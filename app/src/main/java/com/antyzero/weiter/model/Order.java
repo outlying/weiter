@@ -15,6 +15,22 @@ public class Order implements Parcelable {
 
     private int amount;
 
+    public String getName() {
+        return name;
+    }
+
+    public long getVendorId() {
+        return vendorId;
+    }
+
+    public long getProductId() {
+        return productId;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
     public Order( Parcel source ) {
         name = source.readString();
         vendorId = source.readLong();

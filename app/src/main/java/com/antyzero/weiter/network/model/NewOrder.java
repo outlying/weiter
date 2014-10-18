@@ -1,5 +1,8 @@
 package com.antyzero.weiter.network.model;
 
+import com.antyzero.weiter.model.Order;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +23,10 @@ public class NewOrder {
      * @param customer
      * @param comment
      * @param vendorId
+     * @param orders
      * @return
      */
-    public static NewOrder create(String customer, String comment, long vendorId ){
+    public static NewOrder create( String customer, String comment, long vendorId, List<Order> orders ){
 
         NewOrder newOrder = new NewOrder();
 
@@ -30,7 +34,17 @@ public class NewOrder {
         newOrder.comment = comment;
         newOrder.vendorId = vendorId;
 
-        // TODO loop products
+        newOrder.products = new ArrayList<>();
+
+        for(Order order : orders){
+
+            ProductOrdered productOrdered = new ProductOrdered();
+
+            productOrdered.productId = order.getProductId();
+            productOrdered.amount = order.getAmount();
+
+            newOrder.products.add( productOrdered );
+        }
 
         return newOrder;
     }
