@@ -113,7 +113,7 @@ public class VendorActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick( View v ) {
 
-        OrderActivity.start( this, new ArrayList<>( productsAdapter.collectOrder() ) );
+        OrderActivity.start( this, new ArrayList<>( productsAdapter.collectOrder() ), vendorId );
     }
 
     /**
