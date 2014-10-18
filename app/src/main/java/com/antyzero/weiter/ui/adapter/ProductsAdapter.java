@@ -67,7 +67,7 @@ public class ProductsAdapter extends BaseAdapter {
         ViewHolder viewHolder;
 
         if(convertView == null){
-            convertView = layoutInflater.inflate( R.layout.adapter_item_image, parent, false );
+            convertView = layoutInflater.inflate( R.layout.adapter_item_product_order, parent, false );
 
             viewHolder = new ViewHolder( convertView );
 
