@@ -22,20 +22,31 @@ import javax.inject.Inject;
 public class OrderActivity extends BaseActivity {
 
     public static final String EXTRA_ORDERS = "EXTRA_ORDERS";
+    public static final String EXTRA_VENDOR_ID = "EXTRA_VENDOR_ID";
+
     @Inject
     VendorSpaceService vendorSpaceService;
 
     private List<Order> orders;
 
+    private long vendorId;
+
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
 
-        if(!getIntent().hasExtra( EXTRA_ORDERS )){
+        Intent intent = getIntent();
+
+        if(!intent.hasExtra( EXTRA_ORDERS )){
             throw new IllegalArgumentException( "Missing orders extra" );
         }
 
-        orders = getIntent().getParcelableArrayListExtra( EXTRA_ORDERS );
+        if(!intent.hasExtra( EXTRA_VENDOR_ID )){
+            throw new IllegalArgumentException( "Missing vendor ID" );
+        }
+
+        orders = intent.getParcelableArrayListExtra( EXTRA_ORDERS );
+        vendorId = intent.getLongExtra( EXTRA_VENDOR_ID, Long.MIN_VALUE );
 
         if(orders.isEmpty()){
             Toast.makeText( this, "Lista zamówień nie może być pusta", Toast.LENGTH_SHORT ).show();
@@ -53,10 +64,11 @@ public class OrderActivity extends BaseActivity {
      * @param context
      * @param orders
      */
-    public static void start( Context context, ArrayList<Order> orders ){
+    public static void start( Context context, ArrayList<Order> orders, long vendorId ){
 
         Intent intent = new Intent( context, OrderActivity.class );
 
+        intent.putExtra( EXTRA_VENDOR_ID, vendorId );
         intent.putParcelableArrayListExtra( EXTRA_ORDERS, orders );
 
         context.startActivity( intent );
