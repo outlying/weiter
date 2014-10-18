@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.antyzero.weiter.R;
@@ -36,6 +37,8 @@ public class MainActivity extends BaseActivity implements Callback<List<Vendor>>
 
     private ListView listView;
 
+    private TextView textViewShops;
+
     /**
      * {@inheritDoc}
      */
@@ -51,6 +54,8 @@ public class MainActivity extends BaseActivity implements Callback<List<Vendor>>
         listView = (ListView) findViewById( R.id.listView );
         listView.setAdapter( vendorsAdapter );
         listView.setOnItemClickListener( this );
+
+        textViewShops = (TextView) findViewById( R.id.textViewShops );
     }
 
     /**
@@ -70,6 +75,8 @@ public class MainActivity extends BaseActivity implements Callback<List<Vendor>>
         vendorList.clear();
         vendorList.addAll( vendors );
         vendorsAdapter.notifyDataSetChanged();
+
+        textViewShops.setText( String.format( "Sklepy w twojej okolicy %s", vendors.size() ) );
     }
 
     /**
