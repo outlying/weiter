@@ -30,8 +30,6 @@ public class MainActivity extends BaseActivity implements Callback<List<Vendor>>
     @Inject
     VendorSpaceService vendorSpaceService;
 
-    private ObjectGraph activityGraph;
-
     private final List<Vendor> vendorList = new ArrayList<>();
 
     private VendorsAdapter vendorsAdapter;
