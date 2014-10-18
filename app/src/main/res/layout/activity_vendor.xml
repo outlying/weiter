@@ -29,6 +29,7 @@
         tools:listitem="@layout/adapter_item_product_order" />
 
     <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

@@ -16,6 +16,7 @@ import com.antyzero.weiter.model.Order;
 import com.antyzero.weiter.network.model.Product;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -135,14 +136,18 @@ public class ProductsAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public Order[] collectOrder(){
+    /**
+     *
+     * @return
+     */
+    public List<Order> collectOrder(){
 
-        Order[] orders = new Order[orderCount.size()];
+        List<Order> orders = new ArrayList<>();
 
         for( int i = 0; i < orderCount.size(); i++ ){
             long productId = orderCount.keyAt( i );
             Integer amount = orderCount.valueAt( i );
-            orders[i] = new Order(vendorId, productId, amount, "TODO" );
+            orders.add( new Order(vendorId, productId, amount, "TODO" ) );
         }
 
         return orders;

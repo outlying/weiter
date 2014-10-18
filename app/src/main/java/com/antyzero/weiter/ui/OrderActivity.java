@@ -24,7 +24,7 @@ public class OrderActivity extends BaseActivity {
     @Inject
     VendorSpaceService vendorSpaceService;
 
-    private ArrayList<Order> orders;
+    private List<Order> orders;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {

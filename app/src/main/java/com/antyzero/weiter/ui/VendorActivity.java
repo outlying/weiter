@@ -3,6 +3,8 @@ package com.antyzero.weiter.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 
 import com.antyzero.weiter.R;
 import com.antyzero.weiter.VendSpaceApplication;
+import com.antyzero.weiter.model.Order;
 import com.antyzero.weiter.network.VendorSpaceService;
 import com.antyzero.weiter.network.model.Product;
 import com.antyzero.weiter.network.model.Vendor;
@@ -30,7 +33,7 @@ import static android.view.View.GONE;
 /**
  * Created by tornax on 18.10.14.
  */
-public class VendorActivity extends BaseActivity {
+public class VendorActivity extends BaseActivity implements View.OnClickListener {
 
     public static final String EXTRA_VENDOR_ID = "EXTRA_VENDOR_ID";
 
@@ -42,6 +45,8 @@ public class VendorActivity extends BaseActivity {
     private TextView textViewProducts;
 
     private ListView listView;
+
+    private Button button;
 
     private List<Product> productList = new ArrayList<>();
 
@@ -63,7 +68,7 @@ public class VendorActivity extends BaseActivity {
 
         vendorId = getIntent().getLongExtra( EXTRA_VENDOR_ID, -1l );
 
-        productsAdapter = new ProductsAdapter( this, productList );
+        productsAdapter = new ProductsAdapter( this, vendorId, productList );
 
         VendSpaceApplication.get( this ).objectGraph().inject( this );
 
@@ -77,6 +82,8 @@ public class VendorActivity extends BaseActivity {
 
         listView = (ListView) findViewById( R.id.listView );
         listView.setAdapter( productsAdapter );
+
+        button.setOnClickListener( this );
     }
 
     @Override
@@ -100,6 +107,12 @@ public class VendorActivity extends BaseActivity {
         intent.putExtra( EXTRA_VENDOR_ID, vendorId );
 
         context.startActivity( intent );
+    }
+
+    @Override
+    public void onClick( View v ) {
+
+        OrderActivity.start( this, new ArrayList<>( productsAdapter.collectOrder() ) );
     }
 
     /**
