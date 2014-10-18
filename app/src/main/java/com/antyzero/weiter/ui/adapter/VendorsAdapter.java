@@ -2,6 +2,8 @@ package com.antyzero.weiter.ui.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.LongSparseArray;
+import android.util.SparseLongArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,12 @@ public class VendorsAdapter extends BaseAdapter {
     private final List<Vendor> vendorList;
     private final LayoutInflater layoutInflater;
 
+    /**
+     * ...
+     *
+     * @param context
+     * @param vendorList
+     */
     public VendorsAdapter( Context context, List<Vendor> vendorList ) {
 
         if( vendorList == null ) {

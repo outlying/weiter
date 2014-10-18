@@ -2,6 +2,7 @@ package com.antyzero.weiter.ui.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.LongSparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,14 @@ public class ProductsAdapter extends BaseAdapter {
     private final List<Product> productList;
     private final LayoutInflater layoutInflater;
 
+    private final LongSparseArray<Integer> orderCount = new LongSparseArray<>();
+
+    /**
+     *
+     *
+     * @param context
+     * @param productList
+     */
     public ProductsAdapter( Context context, List<Product> productList ) {
 
         if( productList == null ) {
@@ -91,15 +100,11 @@ public class ProductsAdapter extends BaseAdapter {
     private static class ViewHolder {
 
         private final TextView textViewTitle;
-        private final TextView textViewProducts;
         private final ImageView imageView;
 
         private ViewHolder( View view ) {
             textViewTitle = (TextView) view.findViewById( R.id.textViewTitle );
-            textViewProducts = (TextView) view.findViewById( R.id.textViewProducts );
             imageView = (ImageView) view.findViewById( R.id.imageView );
-
-            textViewProducts.setVisibility( GONE );
         }
     }
 }
