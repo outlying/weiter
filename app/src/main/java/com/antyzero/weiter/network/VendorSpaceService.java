@@ -16,7 +16,7 @@ import retrofit.http.Query;
 public interface VendorSpaceService {
 
     @GET( "/vendor" )
-    void listVendors( @Query("lng") float lng, @Query( "lat" ) float lat, Callback<List<Vendor>> callback );
+    void listVendors( @Query( "lat" ) float lat, @Query("lng") float lng, Callback<List<Vendor>> callback );
 
     @GET( "/vendor/{id}" )
     void vendor( @Path("id") long vendorId, Callback<Vendor> callback );
