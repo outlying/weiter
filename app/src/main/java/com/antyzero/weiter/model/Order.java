@@ -19,6 +19,20 @@ public class Order implements Parcelable {
         amount = source.readInt();
     }
 
+    /**
+     *
+     *
+     * @param vendorId
+     * @param productId
+     * @param amount
+     */
+    public Order( long vendorId, long productId, int amount ) {
+
+        this.vendorId = vendorId;
+        this.productId = productId;
+        this.amount = amount;
+    }
+
     @Override
     public int describeContents() {
         return 0;

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.antyzero.weiter.R;
 import com.antyzero.weiter.VendSpaceApplication;
+import com.antyzero.weiter.model.Order;
 import com.antyzero.weiter.network.model.Product;
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +27,8 @@ public class ProductsAdapter extends BaseAdapter {
 
     private final Resources resources;
 
+    private final long vendorId;
+
     @Inject
     Picasso picasso;
 
@@ -38,7 +41,8 @@ public class ProductsAdapter extends BaseAdapter {
      * @param context
      * @param productList
      */
-    public ProductsAdapter( Context context, List<Product> productList ) {
+    public ProductsAdapter( Context context, long vendorId, List<Product> productList ) {
+        this.vendorId = vendorId;
 
         if( productList == null ) {
             throw new IllegalArgumentException( "List cannot be null" );
@@ -129,6 +133,19 @@ public class ProductsAdapter extends BaseAdapter {
         } );
 
         return convertView;
+    }
+
+    public Order[] collectOrder(){
+
+        Order[] orders = new Order[orderCount.size()];
+
+        for( int i = 0; i < orderCount.size(); i++ ){
+            long productId = orderCount.keyAt( i );
+            Integer amount = orderCount.valueAt( i );
+            orders[i] = new Order(vendorId, productId, amount );
+        }
+
+        return orders;
     }
 
     /**
