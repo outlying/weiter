@@ -3,9 +3,7 @@ package com.antyzero.weiter.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +13,7 @@ import com.antyzero.weiter.VendSpaceApplication;
 import com.antyzero.weiter.network.VendorSpaceService;
 import com.antyzero.weiter.network.model.Product;
 import com.antyzero.weiter.network.model.Vendor;
+import com.antyzero.weiter.ui.adapter.ProductsAdapter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -22,7 +21,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import dagger.ObjectGraph;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -45,7 +43,9 @@ public class VendorActivity extends BaseActivity {
 
     private ListView listView;
 
-    private List<Product> products = new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
+
+    private ProductsAdapter productsAdapter;
 
     @Inject
     Picasso picasso;
@@ -63,6 +63,8 @@ public class VendorActivity extends BaseActivity {
 
         vendorId = getIntent().getLongExtra( EXTRA_VENDOR_ID, -1l );
 
+        productsAdapter = new ProductsAdapter( this, productList );
+
         VendSpaceApplication.get( this ).objectGraph().inject( this );
 
         setContentView( R.layout.activity_vendor );
@@ -74,6 +76,7 @@ public class VendorActivity extends BaseActivity {
         textViewProducts.setVisibility( GONE );
 
         listView = (ListView) findViewById( R.id.listView );
+        listView.setAdapter( productsAdapter );
     }
 
     @Override
@@ -123,7 +126,9 @@ public class VendorActivity extends BaseActivity {
 
         @Override
         public void success( List<Product> products, Response response ) {
-
+            productList.clear();
+            productList.addAll( products );
+            productsAdapter.notifyDataSetChanged();
         }
 
         @Override
