@@ -26,7 +26,11 @@ public class NewOrder {
 
         NewOrder newOrder = new NewOrder();
 
-        // TODO
+        newOrder.customer = customer;
+        newOrder.comment = comment;
+        newOrder.vendorId = vendorId;
+
+        // TODO loop products
 
         return newOrder;
     }
