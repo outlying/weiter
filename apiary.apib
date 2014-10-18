@@ -71,3 +71,26 @@ Get list of products for given vendor
             "currency": "PLN"
           }
         ]
+
+## Vendor Product list [/order]
+Get list of products for given vendor
+
+### Retrive products list [POST]
++ Response 200 (application/json)
+
+        {
+            "customer": "Jan Kowalski",
+            "products": [
+                {
+                    "vendorId": 1,
+                    "productId": 1,
+                    "amount": 1
+                },
+                {
+                    "vendorId": 1,
+                    "productId": 2,
+                    "amount": 1
+                }
+            ]
+        }
+        }
