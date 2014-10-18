@@ -72,26 +72,45 @@ Get list of products for given vendor
           }
         ]
 
-## Vendor Product list [/order]
-Get list of products for given vendor
+## Orders [/order]
 
-### Retrive products list [POST]
+### Create new order [POST]
++ Request
+   + Headers 
+  
+            Authorization: KEY your_api_key
+   + Body
+
+            {
+                "customer": "Jan Kowalski",
+                "comment": "4p. sala raum D",
+                "vendorId": 1,
+                "products": [
+                    {
+                        "productId": 1,
+                        "amount": 1
+                    },
+                    {
+                        "productId": 2,
+                        "amount": 1
+                    }
+                ]
+            }
+   
 + Response 200 (application/json)
 
         {
-            "customer": "Jan Kowalski",
-            "comment": "4p. sala raum D",
-            "products": [
-                {
-                    "vendorId": 1,
-                    "productId": 1,
-                    "amount": 1
-                },
-                {
-                    "vendorId": 1,
-                    "productId": 2,
-                    "amount": 1
-                }
-            ]
+            "orderId": 123
         }
+        
+        
+## Orders [/order/{id}]
+
+### Get order status [GET]
+
++ Response 200 (application/json)
+
+        {
+            "status": "deliverying",
+            "wait": 120
         }
