@@ -8,12 +8,15 @@ import android.os.Parcelable;
  */
 public class Order implements Parcelable {
 
+    private String name;
+
     private long vendorId;
     private long productId;
 
     private int amount;
 
     public Order( Parcel source ) {
+        name = source.readString();
         vendorId = source.readLong();
         productId = source.readLong();
         amount = source.readInt();
@@ -26,7 +29,7 @@ public class Order implements Parcelable {
      * @param productId
      * @param amount
      */
-    public Order( long vendorId, long productId, int amount ) {
+    public Order( long vendorId, long productId, int amount, String name ) {
 
         this.vendorId = vendorId;
         this.productId = productId;
@@ -40,6 +43,7 @@ public class Order implements Parcelable {
 
     @Override
     public void writeToParcel( Parcel dest, int flags ) {
+        dest.writeString( name );
         dest.writeLong( vendorId );
         dest.writeLong( productId );
         dest.writeInt( amount );

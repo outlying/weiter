@@ -1,8 +1,10 @@
 package com.antyzero.weiter.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import com.antyzero.weiter.VendSpaceApplication;
+import com.antyzero.weiter.model.Order;
 import com.antyzero.weiter.network.VendorSpaceService;
 
 import javax.inject.Inject;
@@ -20,5 +22,9 @@ public class OrderActivity extends BaseActivity {
         super.onCreate( savedInstanceState );
 
         VendSpaceApplication.get( this ).objectGraph().inject( this );
+    }
+
+    public static void start( Context context, Order[] orders ){
+
     }
 }

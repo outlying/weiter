@@ -142,7 +142,7 @@ public class ProductsAdapter extends BaseAdapter {
         for( int i = 0; i < orderCount.size(); i++ ){
             long productId = orderCount.keyAt( i );
             Integer amount = orderCount.valueAt( i );
-            orders[i] = new Order(vendorId, productId, amount );
+            orders[i] = new Order(vendorId, productId, amount, "TODO" );
         }
 
         return orders;
