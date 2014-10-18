@@ -6,7 +6,7 @@ Notes API is a *short texts saving* service similar to its physical paper presen
 # Group Notes
 Notes related resources of the **Notes API**
 
-## Vendors Collection [/vendors{?lng,lat}]
+## Vendors Collection [/vendor{?lng,lat}]
 ### List all vendors near user location [GET]
 + Parameters
     + lng (required, number) ... longitude
@@ -17,39 +17,50 @@ Notes related resources of the **Notes API**
           "id": 1, 
           "name": "Kanapkowo",
           "productCount": 3,
-          "imageUrl": "http://uk.eonline.com/eol_images/Entire_Site/2013825/rs_560x415-130925143046-1024.Sandwich.jl.092513_copy.jpg"
+          "imageUrl": "http://uk.eonline.com/eol_images/Entire_Site/2013825/rs_560x415-130925143046-1024.Sandwich.jl.092513_copy.jpg",
+          "latitude": 50.048289,
+          "longitude": 19.959646
         }, {
           "id": 2, 
           "name": "FoodTruck",
           "productCount": 4,
-          "imageUrl": "http://www.findlafoodtrucks.com/blog/wp-content/uploads/2010/09/kabobmenu.jpg"
+          "imageUrl": "http://www.findlafoodtrucks.com/blog/wp-content/uploads/2010/09/kabobmenu.jpg",
+          "latitude": 50.058289,
+          "longitude": 19.957646
         }]
 
-### Create a Note [POST]
-+ Request (application/json)
-
-        { "title": "Buy cheese and bread for breakfast." }
-
-+ Response 201 (application/json)
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Note [/notes/{id}]
-A single Note object with all its details
+## Vendor information [/vendor/{id}]
+Get information about single vendor
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
+    + id (required, number, `1`) ... vendor ID
 
 ### Retrieve a Note [GET]
 + Response 200 (application/json)
 
-    + Header
+         {
+           "id": 2, 
+           "name": "FoodTruck",
+           "productCount": 4,
+           "imageUrl": "http://www.findlafoodtrucks.com/blog/wp-content/uploads/2010/09/kabobmenu.jpg",
+           "latitude": 50.058289,
+           "longitude": 19.957646
+         }
 
-            X-My-Header: The Value
 
-    + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+## Vendor Product list [/vendor/{id}/product]
+Get list of products for given vendor
 
-### Remove a Note [DELETE]
-+ Response 204
+### Retrive products list [GET]
++ Response 200 (application/json)
+
+        [
+          {
+            "id": 1,
+            "name": "gulasz ze słonia",
+            "imageUrl": "http://uk.eonline.com/eol_images/Entire_Site/2013825/rs_560x415-130925143046-1024.Sandwich.jl.092513_copy.jpg",
+            "price": 2.23,
+            "currency": "PLN"
+          }
+        ]
