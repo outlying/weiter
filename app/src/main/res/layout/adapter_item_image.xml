@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/item_height">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/item_height"
+        android:layout_height="@dimen/item_height"
         android:scaleType="centerCrop"
         tools:background="#00FF00"/>
 
