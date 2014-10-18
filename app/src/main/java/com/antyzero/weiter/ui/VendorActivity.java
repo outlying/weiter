@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,8 +13,12 @@ import android.widget.Toast;
 import com.antyzero.weiter.R;
 import com.antyzero.weiter.VendSpaceApplication;
 import com.antyzero.weiter.network.VendorSpaceService;
+import com.antyzero.weiter.network.model.Product;
 import com.antyzero.weiter.network.model.Vendor;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -27,13 +32,11 @@ import static android.view.View.GONE;
 /**
  * Created by tornax on 18.10.14.
  */
-public class VendorActivity extends BaseActivity implements Callback<Vendor> {
+public class VendorActivity extends BaseActivity {
 
     public static final String EXTRA_VENDOR_ID = "EXTRA_VENDOR_ID";
 
     private long vendorId;
-
-    private ObjectGraph activityGraph;
 
     private ImageView imageView;
 
@@ -41,6 +44,8 @@ public class VendorActivity extends BaseActivity implements Callback<Vendor> {
     private TextView textViewProducts;
 
     private ListView listView;
+
+    private List<Product> products = new ArrayList<>();
 
     @Inject
     Picasso picasso;
@@ -75,7 +80,8 @@ public class VendorActivity extends BaseActivity implements Callback<Vendor> {
     protected void onStart() {
         super.onStart();
 
-        vendorSpaceService.vendor( vendorId, this );
+        vendorSpaceService.vendor( vendorId, new VendorCallback() );
+        vendorSpaceService.vendorProducts( vendorId, new ProductListCallback() );
     }
 
     /**
@@ -93,14 +99,36 @@ public class VendorActivity extends BaseActivity implements Callback<Vendor> {
         context.startActivity( intent );
     }
 
-    @Override
-    public void success( Vendor vendor, Response response ) {
-        textViewTitle.setText( vendor.getName() );
-        picasso.load( vendor.getImageUrl() ).into( imageView );
+    /**
+     * Vendor details
+     */
+    private class VendorCallback implements Callback<Vendor> {
+
+        @Override
+        public void success( Vendor vendor, Response response ) {
+            textViewTitle.setText( vendor.getName() );
+            picasso.load( vendor.getImageUrl() ).into( imageView );
+        }
+
+        @Override
+        public void failure( RetrofitError error ) {
+            Toast.makeText( VendorActivity.this, "Dane sprzedawcy niedostępne", Toast.LENGTH_SHORT ).show();
+        }
     }
 
-    @Override
-    public void failure( RetrofitError error ) {
-        Toast.makeText( this, "Dane sprzedawcy niedostępne", Toast.LENGTH_SHORT ).show();
+    /**
+     * Products for vendor
+     */
+    private class ProductListCallback implements Callback<List<Product>> {
+
+        @Override
+        public void success( List<Product> products, Response response ) {
+
+        }
+
+        @Override
+        public void failure( RetrofitError error ) {
+            Toast.makeText( VendorActivity.this, "Nie można pobrać produktów dla sprzedawcy", Toast.LENGTH_SHORT ).show();
+        }
     }
 }

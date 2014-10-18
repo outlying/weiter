@@ -1,7 +1,7 @@
 package com.antyzero.weiter.network.model;
 
 /**
- * Created by tornax on 18.10.14.
+ *
  */
 public class Product {
 
@@ -10,8 +10,25 @@ public class Product {
     private float price;
     private String currency;
 
+    private String imageUrl;
+
     public long getId() {
-        // Mock
-        return -1;
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }
